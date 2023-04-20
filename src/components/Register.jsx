@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//import server from "server";
 import axios from "axios";
 export const Register = (props) => {
     const [rollno, setRollNo] = useState('');
@@ -12,9 +13,105 @@ export const Register = (props) => {
     const [confirmpass, setConfirmPass] = useState('');
     const [registerStatus,setRegisterStatus] = useState('');
 
+    const [rollnoError, setRollNoError] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [genderError, setGenderError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [deptError, setDeptError] = useState('');
+    const [yearError, setYearError] = useState('');
+    const [mobileError, setMobileError] = useState('');
+    const [passError, setPassError] = useState('');
+    const [confirmpassError, setConfirmPassError] = useState('');
+
+
+    const validateForm = () => {
+      let isValid = true;
+  
+      if (!rollno) {
+        setRollNoError('Please enter your roll number.');
+        isValid = false;
+      } else {
+        setRollNoError('');
+      }
+  
+      if (!name) {
+        setNameError('Please enter your full name.');
+        isValid = false;
+      } else {
+        setNameError('');
+      }
+  
+      if (!gender) {
+        setGenderError('Please select your gender.');
+        isValid = false;
+      } else {
+        setGenderError('');
+      }
+  
+      if (!email) {
+        setEmailError('Please enter your email address.');
+        isValid = false;
+      } else if (!/\S+@\S+\.\S+/.test(email)) {
+        setEmailError('Please enter a valid email address.');
+        isValid = false;
+      } else {
+        setEmailError('');
+      }
+  
+      if (!dept) {
+        setDeptError('Please select your department.');
+        isValid = false;
+      } else {
+        setDeptError('');
+      }
+  
+      if (!year) {
+        setYearError('Please select your year.');
+        isValid = false;
+      } else {
+        setYearError('');
+      }
+  
+      if (!mobile) {
+        setMobileError('Please enter your mobile number.');
+        isValid = false;
+      } else if (!/^[0-9]+$/.test(mobile)) {
+        setMobileError('Please enter a valid mobile number.');
+        isValid = false;
+      } else if (mobile.length !== 10) {
+        setMobileError('Please enter a 10-digit mobile number.');
+        isValid = false;
+      } else {
+        setMobileError('');
+      }
+  
+      if (!pass) {
+        setPassError('Please enter a password.');
+        isValid = false;
+      } else if (pass.length < 8) {
+        setPassError('Your password must be at least 8 characters long.');
+        isValid = false;
+      } else {
+        setPassError('');
+      }
+  
+      if (!confirmpass) {
+        setConfirmPassError('Please confirm your password.');
+        isValid = false;
+      } else if (pass !== confirmpass) {
+        setConfirmPassError('Your passwords do not match.');
+        isValid = false;
+      } else {
+        setConfirmPassError('');
+      }
+  
+      return isValid;
+    };
+
 
     const register = (e) => {
         e.preventDefault();
+      
         axios.post("http://localhost:3001/register", {
           rollno: rollno,
           name: name,

@@ -14,7 +14,7 @@ export const Adminstrator = (props) => {
         } else if (pass.length === 0) {
             alert("Password has been left blank!");
         } else {
-            axios.post("http://localhost:3001/admin", {
+            axios.post("http://localhost:8090/admin", {
                 email: email,
                 pass: pass,
             }).then((response) => {

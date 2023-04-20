@@ -1,0 +1,47 @@
+.notice-board-container {
+  border: 2px solid white;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.notice-board-container h2 {
+  margin-top: 0;
+}
+
+.notice-board {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.notice {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.notice h3 {
+  margin-top: 0;
+}
+
+.notice p {
+  margin-bottom: 10px;
+}
+
+.notice a {
+  display: block;
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.notice a:hover {
+  background-color: #0069d9;
+}
+
+.notice-board-parent {
+  overflow: hidden;
+}
